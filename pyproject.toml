@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "dockerdiscordbot"
+version = "0.1.0"
+description = "A Discord Bot"
+authors = ["Lester1989 <lester@techfak.uni-bielefeld.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+discord-py-interactions = "^5.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
