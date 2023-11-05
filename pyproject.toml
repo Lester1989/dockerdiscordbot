@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dockerdiscordbot"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Discord Bot"
 authors = ["Lester1989 <lester@techfak.uni-bielefeld.de>"]
 readme = "README.md"
