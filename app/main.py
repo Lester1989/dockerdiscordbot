@@ -5,7 +5,8 @@ from interactions import Client, Intents, listen
 from interactions import slash_command, SlashContext
 
 bot = Client(intents=Intents.DEFAULT)
-
+TESTING_GUILDS = [int(guild_id) for guild_id in os.environ.get("TESTING_GUILD","").split(",") if guild_id] or None
+SCOPE_KWARG = {"scopes": TESTING_GUILDS} if TESTING_GUILDS else {}
 @listen()
 async def on_ready():
     """
@@ -23,21 +24,21 @@ async def on_message_create(event):
     print(f"message received: {event.message.content}")
 
 
-@slash_command(name="my_command", description="My first command :)")
+@slash_command(name="my_command", description="My first command :)",**SCOPE_KWARG)
 async def my_command_function(ctx: SlashContext):
     """
     A slash command that sends a "Hello World" message to the channel
     """
     await ctx.send("Hello World")
 
-@slash_command(name="my_version", description="My check current bot version")
+@slash_command(name="my_version", description="My check current bot version",**SCOPE_KWARG)
 async def my_version_function(ctx: SlashContext):
     """
     A slash command that sends a "Hello World" message to the channel
     """
     await ctx.send(pathlib.Path('version.txt').read_text(encoding='utf8'))
 
-@slash_command(name="my_long_command", description="My second command :)")
+@slash_command(name="my_long_command", description="My second command :)",**SCOPE_KWARG)
 async def my_long_command_function(ctx: SlashContext):
     """
     A slash command that defers the response, waits for 1 minute, then sends a "Hello World" message to the channel
